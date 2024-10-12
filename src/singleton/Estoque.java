@@ -24,6 +24,30 @@ public class Estoque {
         return instancia;
     }
 
+    public void adicionarProduto(Produto produto) {
+        produtos.add(produto);
+    }
+
+    public void removerProduto(Produto produto) {
+        produtos.remove(produto);
+    }
+    public  Produto buscarProduto(String nome) {
+        for (Produto produto : produtos) {
+            if (produto.getNome().equals(nome)) {
+                return produto;
+            }
+        }
+        return null;
+    }
+
+    public List<Produto> getProdutos() {
+        return produtos;
+    }
+
+    public void setProdutos(List<Produto> produtos) {
+        this.produtos = produtos;
+    }
+
 
 
 }
