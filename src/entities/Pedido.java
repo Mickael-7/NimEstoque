@@ -5,6 +5,22 @@ public abstract class Pedido {
     protected  int quantidade;
     protected Produto produto;
 
+    public int getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
+    }
+
+    public Produto getProduto() {
+        return produto;
+    }
+
+    public void setProduto(Produto produto) {
+        this.produto = produto;
+    }
+
     public double getValor() {
         return valor;
     }
@@ -14,4 +30,5 @@ public abstract class Pedido {
     }
 
     public abstract void processar();
+
 }
