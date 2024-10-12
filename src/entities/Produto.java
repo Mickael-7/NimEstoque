@@ -45,7 +45,7 @@ public class Produto {
 
 
     private void notificarObservadores() {
-        if (this.quantidade <= 5) { // Se o estoque estiver abaixo de um limite, notifica com urgência
+        if (this.quantidade <= 5) {
             for (ObservadorEstoque observador : observadores) {
                 observador.atualizar(this, "Estoque crítico");
             }
