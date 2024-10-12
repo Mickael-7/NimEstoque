@@ -3,6 +3,7 @@ package factory;
 import entities.Produto;
 import entities.Pedido;
 public class PedidoExpresso extends Pedido {
+
     public PedidoExpresso(double valor, int quantidade, Produto produto) {
         this.valor = valor;
         this.quantidade = quantidade;
