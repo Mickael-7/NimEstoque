@@ -33,6 +33,17 @@ public class Produto {
     public void removerObservador(ObservadorEstoque observador) {
         observadores.remove(observador);
     }
+    private void notificarObservadores() {
+        if (this.quantidade <= 5) {
+            for (ObservadorEstoque observador : observadores) {
+                observador.atualizar(this, "Estoque crítico");
+            }
+        } else {
+            for (ObservadorEstoque observador : observadores) {
+                observador.atualizar(this, "Estoque atualizado");
+            }
+        }
+    }
 
     public void reduzirEstoque(int quantidade) {
         if (this.quantidade >= quantidade) {
@@ -60,17 +71,7 @@ public class Produto {
         this.observadores = observadores;
     }
 
-    private void notificarObservadores() {
-        if (this.quantidade <= 5) {
-            for (ObservadorEstoque observador : observadores) {
-                observador.atualizar(this, "Estoque crítico");
-            }
-        } else {
-            for (ObservadorEstoque observador : observadores) {
-                observador.atualizar(this, "Estoque atualizado");
-            }
-        }
-    }
+
 
     public String getNome() {
         return nome;

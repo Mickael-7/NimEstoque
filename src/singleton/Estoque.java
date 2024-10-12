@@ -16,7 +16,6 @@ public class Estoque {
     }
 
 
-
     public static Estoque getInstancia() {
         if (instancia == null) {
             instancia = new Estoque();
@@ -31,7 +30,8 @@ public class Estoque {
     public void removerProduto(Produto produto) {
         produtos.remove(produto);
     }
-    public  Produto buscarProduto(String nome) {
+
+    public Produto buscarProduto(String nome) {
         for (Produto produto : produtos) {
             if (produto.getNome().equals(nome)) {
                 return produto;
@@ -48,6 +48,9 @@ public class Estoque {
         this.produtos = produtos;
     }
 
+    public void atualizarEstoque(Produto produto, int quantidade) {
+        produto.setQuantidade(produto.getQuantidade() + quantidade);
+    }
 
 
 }
