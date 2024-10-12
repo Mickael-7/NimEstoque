@@ -14,7 +14,7 @@ public class RelatorioEstoque implements ObservadorEstoque {
     }
 
     public void gerarRelatorio(List<Produto> produtos) {
-        try (FileWriter writer = new FileWriter("relatorio_estoque.xml")) {
+        try (FileWriter writer = new FileWriter("relatorio_estoque.txt")) {
             for (Produto produto : produtos) {
                 writer.write(produto.getNome() + " - Quantidade: " + produto.getQuantidade() + "\n");
             }
