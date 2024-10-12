@@ -44,6 +44,22 @@ public class Produto {
     }
 
 
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
+    }
+
+    public List<ObservadorEstoque> getObservadores() {
+        return observadores;
+    }
+
+    public void setObservadores(List<ObservadorEstoque> observadores) {
+        this.observadores = observadores;
+    }
+
     private void notificarObservadores() {
         if (this.quantidade <= 5) {
             for (ObservadorEstoque observador : observadores) {
