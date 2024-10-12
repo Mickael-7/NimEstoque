@@ -1,6 +1,7 @@
 package singleton;
 
 import entities.Pedido;
+import observer.PedidoObserver;
 
 import java.util.ArrayList;
 import java.util.List;
