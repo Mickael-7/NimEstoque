@@ -1,4 +1,3 @@
-
 import entities.Pedido;
 import entities.Produto;
 import factory.PedidoExpressoFactory;
@@ -26,6 +25,11 @@ public class PedidoApp {
                     null, "Escolha uma opção", "Sistema de Pedidos",
                     JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, opcoes, opcoes[0]
             );
+
+            // Verificar se a janela foi fechada
+            if (escolha == JOptionPane.CLOSED_OPTION) {
+                escolha = 5; // Definir escolha como "Sair"
+            }
 
             switch (escolha) {
                 case 0: // Cadastrar Produto
@@ -88,7 +92,6 @@ public class PedidoApp {
         } else if (tipoPedido.equals("Expresso")) {
             pedidoFactory = new PedidoExpressoFactory();
         }
-
 
         // Perguntar qual produto foi comprado
         Estoque estoque = Estoque.getInstancia();
