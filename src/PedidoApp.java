@@ -115,8 +115,8 @@ public class PedidoApp {
         } else {
             StringBuilder sb = new StringBuilder();
             for (Pedido pedido : pedidos) {
-                sb.append("Tipo: ").append(pedido.getClass().getSimpleName())
-                        .append(" - Valor: ").append(pedido.getValor()).append("\n");
+                sb.append(pedido.getClass().getSimpleName()).append(" - ").append(pedido.getProduto().getNome())
+                        .append(" - R$ ").append(pedido.getValor()).append("\n");
             }
             JOptionPane.showMessageDialog(null, sb.toString(), "Lista de Pedidos", JOptionPane.INFORMATION_MESSAGE);
         }
