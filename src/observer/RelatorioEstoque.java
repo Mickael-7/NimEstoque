@@ -9,8 +9,7 @@ import java.util.List;
 public class RelatorioEstoque implements ObservadorEstoque {
     @Override
     public void atualizar(Produto produto, String mensagem) {
-        System.out.println("Produto: " + produto.getNome() + " - Quantidade atualizada: " + produto.getQuantidade());
-        System.out.println("Mensagem: " + mensagem);
+        System.out.println(" ");
     }
 
     public void gerarRelatorio(List<Produto> produtos) {
@@ -20,7 +19,7 @@ public class RelatorioEstoque implements ObservadorEstoque {
             }
             System.out.println("Relatório de estoque salvo em 'relatorio_estoque.txt'.");
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println("Erro ao gerar o relatório: " + e.getMessage());
         }
     }
 }
