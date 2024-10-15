@@ -79,7 +79,7 @@ public class PedidoApp {
         String nomeProduto = scanner.nextLine();
 
         System.out.print("Informe o preço do produto: ");
-        int precoProduto = Integer.parseInt(scanner.nextLine());
+        double precoProduto = Double.parseDouble(scanner.nextLine());
 
         System.out.print("Informe a quantidade do produto: ");
         int quantidadeProduto = Integer.parseInt(scanner.nextLine());
