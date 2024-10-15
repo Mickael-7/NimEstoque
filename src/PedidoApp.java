@@ -30,38 +30,46 @@ public class PedidoApp {
         int escolha;
 
         do {
-            System.out.println("Escolha uma opção:");
+            System.out.println("Escolha uma opção: ");
             for (int i = 0; i < opcoes.length; i++) {
-                System.out.println(i + ". " + opcoes[i]);
+                System.out.println((i+1) + ". " + opcoes[i]);
             }
 
             escolha = scanner.nextInt();
             scanner.nextLine();
 
             switch (escolha) {
-                case 0:
+                case 1:
                     cadastrarProduto(scanner);
                     break;
-                case 1:
-                    criarPedido(scanner);
-                    break;
                 case 2:
-                    listarPedidos();
+                    if(gerenciadorEstoque.listarProdutos().isEmpty()) {
+                        System.out.println("Não existem produtos disponiveis");
+                    }else {
+                        criarPedido(scanner);
+                    }
                     break;
                 case 3:
-                    visualizarEstoque();
+                    listarPedidos();
                     break;
                 case 4:
-                    re.gerarRelatorio(estoque.getProdutos());
+                    if(gerenciadorEstoque.listarProdutos().isEmpty()) {
+                        System.out.println("Nenhum produto cadastrado");
+                    }else {
+                        visualizarEstoque();
+                    }
                     break;
                 case 5:
+                    re.gerarRelatorio(estoque.getProdutos());
+                    break;
+                case 6:
                     System.out.println("Saindo do sistema.");
                     break;
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
                     break;
             }
-        } while (escolha != 5);
+        } while (escolha != 6);
 
         scanner.close();
     }
