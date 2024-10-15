@@ -2,6 +2,7 @@ import entities.Pedido;
 import entities.Produto;
 import factory.PedidoExpressoFactory;
 import factory.PedidoFactory;
+import factory.PedidoInternacionalFactory;
 import factory.PedidoNormalFactory;
 import observer.GerenciadorEstoque;
 import observer.LogEstoque;
@@ -96,14 +97,26 @@ public class PedidoApp {
         System.out.println("Selecione o tipo de pedido:");
         System.out.println("1. Normal");
         System.out.println("2. Expresso");
+        System.out.println("3. Internacional");
         int tipoPedidoEscolhido = Integer.parseInt(scanner.nextLine());
 
-        String tipoPedido = tipoPedidoEscolhido == 1 ? "Normal" : "Expresso";
+        String tipoPedido = tipoPedidoEscolhido == 1 ? "Normal" :
+                            tipoPedidoEscolhido == 2 ? "Expresso" :
+                            tipoPedidoEscolhido == 3 ? "Internacional": " ";
 
         System.out.print("Informe a quantidade do produto: ");
         int quantidadePedido = Integer.parseInt(scanner.nextLine());
 
-        PedidoFactory pedidoFactory = tipoPedido.equals("Normal") ? new PedidoNormalFactory() : new PedidoExpressoFactory();
+        PedidoFactory pedidoFactory;
+        if (tipoPedido.equals("Normal")) {
+            pedidoFactory = new PedidoNormalFactory();
+        } else if (tipoPedido.equals("Expresso")) {
+            pedidoFactory = new PedidoExpressoFactory();
+        } else if (tipoPedido.equals("Internacional")) {
+            pedidoFactory = new PedidoInternacionalFactory();
+        } else {
+            throw new IllegalArgumentException("Tipo de pedido inválido.");
+        }
 
         Estoque estoque = Estoque.getInstancia();
         String[] produtos = estoque.getProdutos().stream().map(Produto::getNome).toArray(String[]::new);
