@@ -27,7 +27,7 @@ public class PedidoApp {
         gerenciadorEstoque.adicionarObservador(re);
         gerenciadorEstoque.adicionarObservador(le);
 
-        String[] opcoes = {"Cadastrar Produto", "Criar Pedido", "Visualizar Pedidos", "Visualizar Estoque", "Gerar Relatório", "Sair"};
+        String[] opcoes = {"Cadastrar Produto", "Criar Pedido", "Visualizar Pedidos", "Visualizar Estoque", "Gerar Relatório","Excluir Log do Estoque", "Sair"};
         int escolha;
 
         do {
@@ -64,13 +64,17 @@ public class PedidoApp {
                     re.gerarRelatorio(estoque.getProdutos());
                     break;
                 case 6:
+                    gerenciadorEstoque.removerObservador(le);
+                    le.apagarLog();
+                    System.out.println("Log excluido");
+                case 7:
                     System.out.println("Saindo do sistema.");
                     break;
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
                     break;
             }
-        } while (escolha != 6);
+        } while (escolha != 7);
 
         scanner.close();
     }
