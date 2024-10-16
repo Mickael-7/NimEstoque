@@ -21,19 +21,19 @@ public class PedidoApp {
         Scanner scanner = new Scanner(System.in);
 
         Estoque estoque = Estoque.getInstancia();
-        RelatorioEstoque re = new RelatorioEstoque();
+        RelatorioEstoque re = new RelatorioEstoque(estoque.getProdutos());
         LogEstoque le = new LogEstoque();
 
         gerenciadorEstoque.adicionarObservador(re);
         gerenciadorEstoque.adicionarObservador(le);
 
-        String[] opcoes = {"Cadastrar Produto", "Criar Pedido", "Visualizar Pedidos", "Visualizar Estoque", "Gerar Relatório","Excluir Log do Estoque", "Sair"};
+        String[] opcoes = {"Cadastrar Produto", "Criar Pedido", "Visualizar Pedidos", "Visualizar Estoque", "Excluir Log do Estoque", "Sair"};
         int escolha;
 
         do {
             System.out.println("Escolha uma opção: ");
             for (int i = 0; i < opcoes.length; i++) {
-                System.out.println((i+1) + ". " + opcoes[i]);
+                System.out.println((i + 1) + ". " + opcoes[i]);
             }
 
             escolha = scanner.nextInt();
@@ -44,9 +44,9 @@ public class PedidoApp {
                     cadastrarProduto(scanner);
                     break;
                 case 2:
-                    if(gerenciadorEstoque.listarProdutos().isEmpty()) {
-                        System.out.println("Não existem produtos disponiveis");
-                    }else {
+                    if (gerenciadorEstoque.listarProdutos().isEmpty()) {
+                        System.out.println("Não existem produtos disponíveis");
+                    } else {
                         criarPedido(scanner);
                     }
                     break;
@@ -54,27 +54,25 @@ public class PedidoApp {
                     listarPedidos();
                     break;
                 case 4:
-                    if(gerenciadorEstoque.listarProdutos().isEmpty()) {
+                    if (gerenciadorEstoque.listarProdutos().isEmpty()) {
                         System.out.println("Nenhum produto cadastrado");
-                    }else {
+                    } else {
                         visualizarEstoque();
                     }
                     break;
                 case 5:
-                    re.gerarRelatorio(estoque.getProdutos());
-                    break;
-                case 6:
                     gerenciadorEstoque.removerObservador(le);
                     le.apagarLog();
-                    System.out.println("Log excluido");
-                case 7:
+                    System.out.println("Log excluído.");
+                    break;
+                case 6:
                     System.out.println("Saindo do sistema.");
                     break;
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
                     break;
             }
-        } while (escolha != 7);
+        } while (escolha != 6);
 
         scanner.close();
     }
@@ -105,8 +103,8 @@ public class PedidoApp {
         int tipoPedidoEscolhido = Integer.parseInt(scanner.nextLine());
 
         String tipoPedido = tipoPedidoEscolhido == 1 ? "Normal" :
-                            tipoPedidoEscolhido == 2 ? "Expresso" :
-                            tipoPedidoEscolhido == 3 ? "Internacional": " ";
+                tipoPedidoEscolhido == 2 ? "Expresso" :
+                        tipoPedidoEscolhido == 3 ? "Internacional" : " ";
 
         System.out.print("Informe a quantidade do produto: ");
         int quantidadePedido = Integer.parseInt(scanner.nextLine());
